@@ -7,10 +7,16 @@ permissions:
   contents: 'read'
   id-token: 'write'
 
+strategy:
+  fail-fast: false
+  matrix:
+    php: [7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
+    composer: [2]
+
 jobs:
   packaging:
     runs-on: ubuntu-latest
-    name: "Composer PHP"
+    name: "Compose v${{ matrix.composer }} @ PHP ${{ matrix.php }}"
     steps:
       - name: Checkout
         uses: "actions/checkout@v3"
@@ -22,6 +28,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GH_REPOSITORY_TOKEN }}
 
+      - name: Process builder
+        shell: bash
+        run: |
+          echo "build_version=preprod" >> $GITHUB_ENV
+          echo "build_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
+
       - name: Set up Depot CLI
         uses: 'depot/setup-action@v1'
 
@@ -31,16 +43,22 @@ jobs:
           project: ${{ secrets.DEPOT_PROJECT_ID }}
           token: ${{ secrets.DEPOT_PROJECT_TOKEN }}
           push: true
-          tags: ghcr.io/devgine/composer-php
+          tags: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
           context: .
           file: ./Dockerfile
+          build-args: |
+            VCS_REF=${{ github.sha }}
+            BUILD_DATE=${{ env.build_date }}
+            BUILD_VERSION=v${{ matrix.composer }}-php${{ matrix.php }}
+            PHP_VERSION={{ matrix.php }}
+            COMPOSER_VERSION=${{ matrix.composer }}
 
   components:
     needs: packaging
     runs-on: ubuntu-latest
     name: "Components versions"
     container:
-      image: ghcr.io/devgine/composer-php
+      image: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
     steps:
       - name: Composer
         run: composer --version
@@ -51,7 +69,7 @@ jobs:
       - name: PHP Unit
         run: simple-phpunit --version
 
-      - name: PHPStan
+      - name: Rector
         run: rector -V
 
       - name: PHPStan
