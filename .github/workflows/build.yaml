@@ -7,14 +7,15 @@ permissions:
   contents: 'read'
   id-token: 'write'
 
-strategy:
-  fail-fast: false
-  matrix:
-    php: [7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
-    composer: [2]
+
 
 jobs:
   packaging:
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
+        composer: [2]
     runs-on: ubuntu-latest
     name: "Compose v${{ matrix.composer }} @ PHP ${{ matrix.php }}"
     steps:
