@@ -15,3 +15,4 @@ jobs:
           package-name: 'composer-php'
           package-type: 'container'
           delete-only-untagged-versions: true
+          token: ${{ secrets.GH_REPOSITORY_TOKEN }}
