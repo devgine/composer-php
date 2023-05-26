@@ -14,10 +14,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
-        composer: [2]
+        php: ['7.4', '8.0', '8.1', '8.2']
+        composer: ['2']
     runs-on: ubuntu-latest
-    name: "Compose v${{ matrix.composer }} @ PHP ${{ matrix.php }}"
+    name: "Compose v${{ matrix.composer }} PHP ${{ matrix.php }} package"
     steps:
       - name: Checkout
         uses: "actions/checkout@v3"
@@ -58,11 +58,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
-        composer: [2]
+        php: ['7.4', '8.0', '8.1', '8.2']
+        composer: ['2']
     needs: packaging
     runs-on: ubuntu-latest
-    name: "Components versions"
+    name: "Compose v${{ matrix.composer }} PHP ${{ matrix.php }} Components versions"
     container:
       image: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
     steps:
