@@ -6,6 +6,7 @@ on:
 permissions:
   contents: 'read'
   id-token: 'write'
+  packages: write
 
 jobs:
   packaging:
@@ -41,12 +42,20 @@ jobs:
       - name: Set up Depot CLI
         uses: 'depot/setup-action@v1'
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
+
       - name: Build and Push Package
         uses: 'depot/build-push-action@v1'
         with:
           project: ${{ secrets.DEPOT_PROJECT_ID }}
           token: ${{ secrets.DEPOT_PROJECT_TOKEN }}
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
             ${{ matrix.latest && 'ghcr.io/devgine/composer-php:latest' || ''}}
