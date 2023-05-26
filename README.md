@@ -1,18 +1,23 @@
 # Composer PHP golden image
 [![Build](https://github.com/devgine/composer-php/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/build.yaml)
 [![License](https://img.shields.io/github/license/devgine/composer-php)](https://github.com/devgine/composer-php/blob/main/LICENSE)
+![GitHub top language](https://img.shields.io/github/languages/top/devgine/composer-php)
 
 ## About
 This is a docker image to help you to build and test your PHP projects with different PHP version.<br>
 This image contains a necessary tools you need to analyze and test your PHP project.<br>
-List of available PHP versions:
-* PHP 8.3 (coming soon)
-* [PHP 8.2](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513537?tag=v2-php8.2)
-* [PHP 8.1](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513536?tag=v2-php8.1)
-* [PHP 8.0](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513536?tag=v2-php8.0)
-* [PHP 7.4](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513536?tag=v2-php7.4)
-* [PHP 7.3](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513536?tag=v2-php7.3)
-* [PHP 7.2](https://github.com/devgine/composer-php/pkgs/container/composer-php/96513536?tag=v2-php7.2)
+List of docker images available by PHP versions:
+
+| PHP version | image tag       | docker image                             |
+|-------------|-----------------|------------------------------------------|
+| PHP 8.3     | _coming soon_   | _coming soon_                            |
+| PHP 8.2     | v2-php8.2       | `ghcr.io/devgine/composer-php:v2-php8.2` |
+| PHP 8.1     | v2-php8.1       | `ghcr.io/devgine/composer-php:v2-php8.1` |
+| PHP 8.0     | v2-php8.0       | `ghcr.io/devgine/composer-php:v2-php8.0` |
+| PHP 7.4     | v2-php7.4       | `ghcr.io/devgine/composer-php:v2-php7.4` |
+| PHP 7.3     | v2-php7.3       | `ghcr.io/devgine/composer-php:v2-php7.3` |
+| PHP 7.2     | v2-php7.2       | `ghcr.io/devgine/composer-php:v2-php7.2` |
+
 
 ## Components
 Below is the list of tools with their preinstalled version according to the version of PHP.
@@ -37,7 +42,7 @@ docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-p
 ```
 [All versions](https://github.com/devgine/composer-php/pkgs/container/composer-php/versions)
 ### Use as base image in Dockerfile
-```shell
+```dockerfile
 FROM ghcr.io/devgine/composer-php:latest
 ```
 
@@ -54,7 +59,7 @@ simple-phpunit --help
 ```
 #### Rector
 ```shell
-rector init
+rector --help
 ```
 #### PHPStan
 ```shell
@@ -78,22 +83,43 @@ phpcpd --help
 ```yaml
 name: 'Workflow name'
 on:
-    push
+  push
 jobs:
-    job-id:
+  job-id:
     runs-on: ubuntu-latest
     ...
     container:
-        image: ghcr.io/devgine/composer-php:latest
+      image: ghcr.io/devgine/composer-php:latest
     steps:
-        - name: 'Composer'
-          run: composer --version
+      - name: 'Run Tests'
+        run: simple-phpunit --coverage text
+      ...
+```
+An example with matrix strategy
+```yaml
+name: 'Matrix strategy'
+on:
+    push
+jobs:
+  job-id:
+    runs-on: ubuntu-latest
     ...
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: ['v2-php8.2', 'v2-php8.1', 'v2-php8.0', 'v2-php7.4', 'v2-php7.3', 'v2-php7.2']
+    container:
+      image: ghcr.io/devgine/composer-php:${{ matrix.tag }}
+    steps:
+      - name: 'Run Tests'
+        run: simple-phpunit --coverage text
+      ...
 ```
 ### Gitlab CI
-Coming soon
+_Coming soon_
+
 ### Circle CI
-Coming soon
+_Coming soon_
 
 ## References
 * [PHP Unit supported versions](https://phpunit.de/supported-versions.html)

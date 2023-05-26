@@ -59,5 +59,5 @@ LABEL org.label-schema.url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.version=$BUILD_VERSION
-LABEL org.label-schema.docker.cmd="docker run -d ghcr.io/devgine/composer-php sh"
+LABEL org.label-schema.docker.cmd="docker run --rm -ti -v PROJECT_DIR:/var/www/composer ghcr.io/devgine/composer-php:latest sh"
 LABEL org.label-schema.vendor="devgine"
