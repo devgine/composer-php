@@ -36,7 +36,7 @@ jobs:
           file: ./Dockerfile
 
   components:
-    needs: build
+    needs: packaging
     runs-on: ubuntu-latest
     name: "Components versions"
     container:
