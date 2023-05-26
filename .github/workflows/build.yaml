@@ -12,8 +12,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1']
         composer: ['2']
+        latest: [false]
+        include:
+          - php: 8.2
+            composer: 2
+            latest: true
     runs-on: ubuntu-latest
     name: "Composer v${{ matrix.composer }} PHP ${{ matrix.php }} package"
     steps:
@@ -42,7 +47,9 @@ jobs:
           project: ${{ secrets.DEPOT_PROJECT_ID }}
           token: ${{ secrets.DEPOT_PROJECT_TOKEN }}
           push: true
-          tags: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
+          tags: |
+            ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
+            ${{ matrix.latest && 'ghcr.io/devgine/composer-php:latest' || ''}}
           context: .
           file: ./Dockerfile
           build-args: |
@@ -86,5 +93,5 @@ jobs:
         run: phpmd --version
 
       - name: PHP Copy Past Detector
-        if: ${{ matrix.php }} >= 7.3
+        if: ${{ matrix.php >= 7.3 }}
         run: phpcpd --version
