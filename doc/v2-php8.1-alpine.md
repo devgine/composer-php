@@ -27,6 +27,7 @@ RUN apk add symfony-cli
 
 | Component                  | version |
 |----------------------------|---------|
+| Alpine                     | 3.18    |
 | PHP                        | 8.1     |
 | Composer                   | 2.*     |
 | PHP Unit                   | 9.5     |

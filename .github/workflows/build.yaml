@@ -80,6 +80,9 @@ jobs:
     container:
       image: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}-alpine
     steps:
+      - name: OS release
+        run: cat /etc/os-release
+
       - name: Composer
         run: composer --version
 
