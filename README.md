@@ -8,31 +8,30 @@ This repository is a docker image based on php-alpine to help you to build and t
 This docker image contains a necessary tools you need to analyze and test your PHP project.<br>
 List of docker images available by PHP versions:
 
-| PHP version | Docker image tags                                   |
-|-------------|-----------------------------------------------------|
-| PHP 8.3     | _coming soon_                                       |
-| PHP 8.2     | `ghcr.io/devgine/composer-php:latest`               |
-| PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine3.18` |
-| PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine3.18` |
-| PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine3.18` |
-| PHP 7.4     | `ghcr.io/devgine/composer-php:v2-php7.4-alpine3.18` |
-| PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine3.18` |
-| PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine3.18` |
-
+| PHP version | Docker image tags                               |
+|-------------|-------------------------------------------------|
+| PHP 8.3     | _coming soon_                                   |
+| PHP 8.2     | `ghcr.io/devgine/composer-php:latest`           |
+| PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine` |
+| PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine` |
+| PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine` |
+| PHP 7.4     | `ghcr.io/devgine/composer-php:v2-php7.4-alpine` |
+| PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine` |
+| PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine` |
 
 ## Components
 All image tags are based on alpine.
 Below is the list of tools with their preinstalled version according to the version of PHP.
 
-| Image tag                                       | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
-|-------------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
-| [latest](doc/latest.md)                         | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.2-alpine3.18](doc/v2-php8.2-alpine.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.1-alpine3.18](doc/v2-php8.1-alpine.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.0-alpine3.18](doc/v2-php8.0-alpine.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.4-alpine3.18](doc/v2-php7.4-alpine.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.3-alpine3.18](doc/v2-php7.3-alpine.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
-| [v2-php7.2-alpine3.18](doc/v2-php7.2-alpine.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
+| Image tag                                   | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
+|---------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
+| [latest](doc/latest.md)                     | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.2-alpine](doc/v2-php8.2-alpine.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.1-alpine](doc/v2-php8.1-alpine.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.0-alpine](doc/v2-php8.0-alpine.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.4-alpine](doc/v2-php7.4-alpine.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.3-alpine](doc/v2-php7.3-alpine.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
+| [v2-php7.2-alpine](doc/v2-php7.2-alpine.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
 
 ## Usage
 ### Install from the command line
@@ -94,6 +93,7 @@ jobs:
         run: simple-phpunit --coverage text
       ...
 ```
+
 An example with matrix strategy
 ```yaml
 name: 'Matrix strategy'
@@ -114,6 +114,7 @@ jobs:
         run: simple-phpunit --coverage text
       ...
 ```
+
 ### Gitlab CI
 _Coming soon_
 
