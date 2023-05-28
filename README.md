@@ -24,15 +24,15 @@ List of docker images available by PHP versions:
 All image tags are based on alpine.
 Below is the list of tools with their preinstalled version according to the version of PHP.
 
-| Image tag                                           | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
-|-----------------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
-| [latest](doc/latest.md)                             | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.2-alpine3.18](doc/v2-php8.2-alpine3.18.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.1-alpine3.18](doc/v2-php8.1-alpine3.18.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.0-alpine3.18](doc/v2-php8.0-alpine3.18.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.4-alpine3.18](doc/v2-php7.4-alpine3.18.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.3-alpine3.18](doc/v2-php7.3-alpine3.18.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
-| [v2-php7.2-alpine3.18](doc/v2-php7.2-alpine3.18.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
+| Image tag                                       | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
+|-------------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
+| [latest](doc/latest.md)                         | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.2-alpine3.18](doc/v2-php8.2-alpine.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.1-alpine3.18](doc/v2-php8.1-alpine.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.0-alpine3.18](doc/v2-php8.0-alpine.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.4-alpine3.18](doc/v2-php7.4-alpine.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.3-alpine3.18](doc/v2-php7.3-alpine.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
+| [v2-php7.2-alpine3.18](doc/v2-php7.2-alpine.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
 
 ## Usage
 ### Install from the command line
