@@ -4,38 +4,37 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/devgine/composer-php)
 
 ## About
-This is a docker image to help you to build and test your PHP projects with different PHP version.<br>
-This image contains a necessary tools you need to analyze and test your PHP project.<br>
+This repository is a docker image based on php-alpine to help you to build and test your PHP projects with different PHP version.<br>
+This docker image contains a necessary tools you need to analyze and test your PHP project.<br>
 List of docker images available by PHP versions:
 
-| PHP version | image tag       | docker image                             |
-|-------------|-----------------|------------------------------------------|
-| PHP 8.3     | _coming soon_   | _coming soon_                            |
-| PHP 8.2     | v2-php8.2       | `ghcr.io/devgine/composer-php:v2-php8.2` |
-| PHP 8.1     | v2-php8.1       | `ghcr.io/devgine/composer-php:v2-php8.1` |
-| PHP 8.0     | v2-php8.0       | `ghcr.io/devgine/composer-php:v2-php8.0` |
-| PHP 7.4     | v2-php7.4       | `ghcr.io/devgine/composer-php:v2-php7.4` |
-| PHP 7.3     | v2-php7.3       | `ghcr.io/devgine/composer-php:v2-php7.3` |
-| PHP 7.2     | v2-php7.2       | `ghcr.io/devgine/composer-php:v2-php7.2` |
+| PHP version | Docker image tags                                   |
+|-------------|-----------------------------------------------------|
+| PHP 8.3     | _coming soon_                                       |
+| PHP 8.2     | `ghcr.io/devgine/composer-php:latest`               |
+| PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine3.18` |
+| PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine3.18` |
+| PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine3.18` |
+| PHP 7.4     | `ghcr.io/devgine/composer-php:v2-php7.4-alpine3.18` |
+| PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine3.18` |
+| PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine3.18` |
 
 
 ## Components
+All image tags based on alpine 3.18.
 Below is the list of tools with their preinstalled version according to the version of PHP.
 
-| Image tag  -->             | v2-php7.2 | v2-php7.3 | v2-php7.4 | v2-php8.0 | v2-php8.1 | v2-php8.2 |
-|----------------------------|-----------|-----------|-----------|-----------|-----------|-----------|
-| PHP                        | 7.2       | 7.3       | 7.4       | 8.0       | 8.1       | 8.2       |
-| Composer                   | 2.*       | 2.*       | 2.*       | 2.*       | 2.*       | 2.*       |
-| PHP Unit                   | 8.5       | 8.5       | 8.5       | 9.5       | 9.5       | 9.5       |
-| XDebug                     | 3.1.6     | 3.1.6     | 3.1.6     | 3.1.6     | 3.2.1     | 3.2.1     |
-| Rector                     | 0.16      | 0.16      | 0.16      | 0.16      | 0.16      | 0.16      |
-| PHPStan                    | 1.10      | 1.10      | 1.10      | 1.10      | 1.10      | 1.10      |
-| PHP Coding Standards Fixer | 3.4       | 3.4       | 3.17      | 3.17      | 3.17      | 3.17      |
-| PHP Mess Detector          | 2.13      | 2.13      | 2.13      | 2.13      | 2.13      | 2.13      |
-| PHP Copy Past Detector     | --        | 6.0       | 6.0       | 6.0       | 6.0       | 6.0       |
+| Image tag                                           | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
+|-----------------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
+| [latest](doc/latest.md)                             | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.2-alpine3.18](doc/v2-php8.2-alpine3.18.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.1-alpine3.18](doc/v2-php8.1-alpine3.18.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php8.0-alpine3.18](doc/v2-php8.0-alpine3.18.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.4-alpine3.18](doc/v2-php7.4-alpine3.18.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
+| [v2-php7.3-alpine3.18](doc/v2-php7.3-alpine3.18.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
+| [v2-php7.2-alpine3.18](doc/v2-php7.2-alpine3.18.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
 
-
-## How to
+## Usage
 ### Install from the command line
 ```shell
 docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:latest sh

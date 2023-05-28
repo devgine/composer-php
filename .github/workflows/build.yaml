@@ -1,7 +1,12 @@
 name: "Build"
 
 on:
-  push
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile
+      - .docker/
 
 permissions:
   contents: 'read'
@@ -13,15 +18,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        alpine: [3.18]
         php: ['7.2', '7.3', '7.4', '8.0', '8.1']
         composer: ['2']
         latest: [false]
         include:
           - php: 8.2
+            alpine: 3.18
             composer: 2
             latest: true
     runs-on: ubuntu-latest
-    name: "Composer v${{ matrix.composer }} PHP ${{ matrix.php }} package"
+    name: "Composer v${{ matrix.composer }} PHP ${{ matrix.php }} Alpine ${{ matrix.alpine }} package"
     steps:
       - name: Checkout
         uses: "actions/checkout@v3"
@@ -42,12 +49,6 @@ jobs:
       - name: Set up Depot CLI
         uses: 'depot/setup-action@v1'
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
-
       - name: Build and Push Package
         uses: 'depot/build-push-action@v1'
         with:
@@ -57,16 +58,18 @@ jobs:
           provenance: false
           sbom: false
           tags: |
-            ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
+            ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}-alpine${{ matrix.alpine }}
             ${{ matrix.latest && 'ghcr.io/devgine/composer-php:latest' || ''}}
           context: .
           file: ./Dockerfile
           build-args: |
             VCS_REF=${{ github.sha }}
             BUILD_DATE=${{ env.build_date }}
-            BUILD_VERSION=v${{ matrix.composer }}-php${{ matrix.php }}
+            BUILD_VERSION=v${{ matrix.composer }}-php${{ matrix.php }}-alpine${{ matrix.alpine }}
             PHP_VERSION=${{ matrix.php }}
             COMPOSER_VERSION=${{ matrix.composer }}
+            ALPINE_VERSION=${{ matrix.alpine }}
+            IMAGE_TAG=ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}-alpine${{ matrix.alpine }}
 
   components:
     strategy:
@@ -78,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Composer v${{ matrix.composer }} PHP ${{ matrix.php }} versions"
     container:
-      image: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}
+      image: ghcr.io/devgine/composer-php:v${{ matrix.composer }}-php${{ matrix.php }}-alpine${{ matrix.alpine }}
     steps:
       - name: Composer
         run: composer --version

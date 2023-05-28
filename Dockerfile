@@ -1,9 +1,10 @@
 ARG PHP_VERSION=8
 ARG COMPOSER_VERSION=2
+ARG ALPINE_VERSION=3
 
 FROM composer:${COMPOSER_VERSION} as composer
 
-FROM php:${PHP_VERSION}-fpm-alpine
+FROM php:${PHP_VERSION}-fpm-alpine${ALPINE_VERSION}
 
 ## XDEBUG
 RUN curl -sSLf \
@@ -11,7 +12,7 @@ RUN curl -sSLf \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
     chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions xdebug
-COPY xdebug.ini $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini
+COPY .docker/xdebug.ini $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini
 ## END XDEBUG
 
 ## COMPOSER
@@ -47,6 +48,7 @@ RUN rm -rf /tmp/* /var/cache/apk/* /var/tmp/*
 ARG VCS_REF
 ARG BUILD_VERSION
 ARG BUILD_DATE
+ARG IMAGE_TAG=ghcr.io/devgine/composer-php:latest
 
 LABEL maintainer="yosribahri@gmail.com"
 LABEL org.opencontainers.image.source="https://github.com/devgine/composer-php"
@@ -59,5 +61,5 @@ LABEL org.label-schema.url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-ref=$VCS_REF
 LABEL org.label-schema.version=$BUILD_VERSION
-LABEL org.label-schema.docker.cmd="docker run --rm -ti -v PROJECT_DIR:/var/www/composer ghcr.io/devgine/composer-php:latest sh"
+LABEL org.label-schema.docker.cmd="docker run --rm -ti -v PROJECT_DIR:/var/www/composer $IMAGE_TAG sh"
 LABEL org.label-schema.vendor="devgine"
