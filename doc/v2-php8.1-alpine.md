@@ -1,20 +1,20 @@
-# v2-php7.4-alpine3.18
+# v2-php8.1-alpine
 [Homepage](../README.md)
 
 ## Tag
-`ghcr.io/devgine/composer-php:v2-php7.4-alpine3.18`
+`ghcr.io/devgine/composer-php:v2-php8.1-alpine`
 
 ## Usage
 
 ### Install from the command line
 ```shell
-docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:v2-php7.4-alpine3.18 sh
+docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:v2-php8.1-alpine sh
 ```
 [All versions](https://github.com/devgine/composer-php/pkgs/container/composer-php/versions)
 
 ### Use as base image in Dockerfile
 ```dockerfile
-FROM ghcr.io/devgine/composer-php:v2-php7.4-alpine3.18
+FROM ghcr.io/devgine/composer-php:v2-php8.1-alpine
 
 ## SYMFONY CLI INSTALL
 RUN apk add --no-cache bash git
@@ -27,10 +27,10 @@ RUN apk add symfony-cli
 
 | Component                  | version |
 |----------------------------|---------|
-| PHP                        | 7.4     |
+| PHP                        | 8.1     |
 | Composer                   | 2.*     |
 | PHP Unit                   | 9.5     |
-| XDebug                     | 3.1.6   |
+| XDebug                     | 3.2.1   |
 | Rector                     | 0.16    |
 | PHPStan                    | 1.10    |
 | PHP Coding Standards Fixer | 3.17    |

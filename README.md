@@ -21,7 +21,7 @@ List of docker images available by PHP versions:
 
 
 ## Components
-All image tags based on alpine 3.18.
+All image tags are based on alpine.
 Below is the list of tools with their preinstalled version according to the version of PHP.
 
 | Image tag                                           | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
@@ -106,7 +106,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tag: ['v2-php8.2', 'v2-php8.1', 'v2-php8.0', 'v2-php7.4', 'v2-php7.3', 'v2-php7.2']
+        tag: ['v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
     container:
       image: ghcr.io/devgine/composer-php:${{ matrix.tag }}
     steps:

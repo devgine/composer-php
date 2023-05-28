@@ -1,20 +1,20 @@
-# v2-php8.1-alpine3.18
+# v2-php8.0-alpine
 [Homepage](../README.md)
 
 ## Tag
-`ghcr.io/devgine/composer-php:v2-php8.1-alpine3.18`
+`ghcr.io/devgine/composer-php:v2-php8.0-alpine`
 
 ## Usage
 
 ### Install from the command line
 ```shell
-docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:v2-php8.1-alpine3.18 sh
+docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:v2-php8.0-alpine sh
 ```
 [All versions](https://github.com/devgine/composer-php/pkgs/container/composer-php/versions)
 
 ### Use as base image in Dockerfile
 ```dockerfile
-FROM ghcr.io/devgine/composer-php:v2-php8.1-alpine3.18
+FROM ghcr.io/devgine/composer-php:v2-php8.0-alpine
 
 ## SYMFONY CLI INSTALL
 RUN apk add --no-cache bash git
@@ -27,7 +27,7 @@ RUN apk add symfony-cli
 
 | Component                  | version |
 |----------------------------|---------|
-| PHP                        | 8.1     |
+| PHP                        | 8.0     |
 | Composer                   | 2.*     |
 | PHP Unit                   | 9.5     |
 | XDebug                     | 3.2.1   |

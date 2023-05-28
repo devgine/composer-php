@@ -1,10 +1,9 @@
 ARG PHP_VERSION=8
 ARG COMPOSER_VERSION=2
-ARG ALPINE_VERSION=3
 
 FROM composer:${COMPOSER_VERSION} as composer
 
-FROM php:${PHP_VERSION}-fpm-alpine${ALPINE_VERSION}
+FROM php:${PHP_VERSION}-fpm-alpine
 
 ## XDEBUG
 RUN curl -sSLf \
