@@ -2,9 +2,9 @@
 [![Build](https://github.com/devgine/composer-php/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/build.yaml)
 [![License](https://img.shields.io/github/license/devgine/composer-php)](https://github.com/devgine/composer-php/blob/main/LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/devgine/composer-php)
-
+[![Packages retention policy](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml)
 ## About
-This repository is a docker image based on php-alpine to help you to build and test your PHP projects with different PHP version.<br>
+This repository is a docker image based on official php, composer and alpine docker images to help you to build and test your PHP projects with different PHP version.<br>
 This docker image contains a necessary tools you need to analyze and test your PHP project.<br>
 List of docker images available by PHP versions:
 
@@ -20,7 +20,7 @@ List of docker images available by PHP versions:
 | PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine` |
 
 ## Components
-All image tags are based on alpine.
+All image tags are based on alpine OS.<br>
 Below is the list of tools with their preinstalled version according to the version of PHP.
 
 | Image tag                                   | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
@@ -42,6 +42,14 @@ docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-p
 ### Use as base image in Dockerfile
 ```dockerfile
 FROM ghcr.io/devgine/composer-php:latest
+
+# Add your custom instructions here
+# example: install bash
+RUN apk add --no-cache bash
+
+# example: expose 8080 port
+EXPOSE 8080
+#...
 ```
 
 ### Use components

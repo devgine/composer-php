@@ -6,7 +6,8 @@ on:
       - main
     paths:
       - Dockerfile
-      - .docker/
+      - .docker/**
+      - .github/workflows/build.yaml
 
 permissions:
   contents: 'read'
@@ -41,7 +42,6 @@ jobs:
       - name: Process builder
         shell: bash
         run: |
-          echo "build_version=preprod" >> $GITHUB_ENV
           echo "build_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
 
       - name: Set up Depot CLI

@@ -5,6 +5,11 @@ FROM composer:${COMPOSER_VERSION} as composer
 
 FROM php:${PHP_VERSION}-fpm-alpine
 
+ARG PHP_VERSION=8
+ENV PHP_VERSION $PHP_VERSION
+ARG COMPOSER_VERSION=2
+ENV COMPOSER_VERSION $COMPOSER_VERSION
+
 ## XDEBUG
 RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
@@ -50,12 +55,25 @@ ARG BUILD_DATE
 ARG IMAGE_TAG=ghcr.io/devgine/composer-php:latest
 
 LABEL maintainer="yosribahri@gmail.com"
+LABEL org.opencontainers.image.title="Composer v$COMPOSER_VERSION PHP-fpm $PHP_VERSION docker image"
+LABEL org.opencontainers.image.description="This is a docker image based on official alpine image, PHP-fpm \
+$PHP_VERSION and composer v$COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
+different PHP version. It contains a necessary tools you need to analyze and test your PHP project \
+(xdebug, phpunit, phpstan, php-cs-fixer. phpmd and rector)."
 LABEL org.opencontainers.image.source="https://github.com/devgine/composer-php"
-LABEL org.opencontainers.image.description="PHP composer golden image"
+LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.created=$BUILD_DATE
+LABEL org.opencontainers.image.url="https://github.com/devgine/composer-php"
+LABEL org.opencontainers.image.version=$BUILD_VERSION
+LABEL org.opencontainers.image.revision=$VCS_REF
+LABEL org.opencontainers.image.vendor="devgine"
 LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.name="devgine/composer-php"
-LABEL org.label-schema.description="PHP composer golden image"
+LABEL org.label-schema.description="This is a docker image based on official alpine image, PHP-fpm \
+$PHP_VERSION and composer v$COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
+different PHP version. It contains a necessary tools you need to analyze and test your PHP project \
+(xdebug, phpunit, phpstan, php-cs-fixer. phpmd and rector)."
 LABEL org.label-schema.url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-ref=$VCS_REF

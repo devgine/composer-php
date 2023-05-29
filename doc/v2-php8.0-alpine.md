@@ -16,11 +16,11 @@ docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-p
 ```dockerfile
 FROM ghcr.io/devgine/composer-php:v2-php8.0-alpine
 
-## SYMFONY CLI INSTALL
+# Add your custom instructions here
+# example: install symfony cli
 RUN apk add --no-cache bash git
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
 RUN apk add symfony-cli
-## END SYMFONY CLI INSTALL
 ```
 
 ## Content
