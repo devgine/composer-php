@@ -5,12 +5,11 @@
 [![Packages retention policy](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml)
 ## About
 This repository is a docker image based on official php, composer and alpine docker images to help you to build and test your PHP projects with different PHP version.<br>
-This docker image contains a necessary tools you need to analyze and test your PHP project.<br>
-List of docker images available by PHP versions:
+This docker image contains a necessary tools you need to analyze and test your PHP project (xdebug, phpunit, phpstan, php-cs-fixer, phpmd, phpcpd and rector).<br>
+Below is the list of docker images available by PHP versions:
 
 | PHP version | Docker image tags                               |
 |-------------|-------------------------------------------------|
-| PHP 8.3     | _coming soon_                                   |
 | PHP 8.2     | `ghcr.io/devgine/composer-php:latest`           |
 | PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine` |
 | PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine` |
@@ -21,7 +20,7 @@ List of docker images available by PHP versions:
 
 ## Components
 All image tags are based on alpine OS.<br>
-Below is the list of tools with their preinstalled version according to the version of PHP.
+Below is the list of tools with their preinstalled version depending on the PHP version.
 
 | Image tag                                   | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
 |---------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
@@ -124,10 +123,25 @@ jobs:
 ```
 
 ### Gitlab CI
-_Coming soon_
+```yaml
+phpstan:
+  image: ghcr.io/devgine/composer-php:latest
+  ...
+  script:
+    - simple-phpunit --coverage text
+```
 
-### Circle CI
-_Coming soon_
+An example with matrix strategy
+```yaml
+phpstan:
+  parallel:
+    matrix:
+      TAG: ['v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
+  image: ghcr.io/devgine/composer-php:${TAG}
+  ...
+  script:
+    - simple-phpunit --coverage text
+```
 
 ## References
 * [PHP Unit supported versions](https://phpunit.de/supported-versions.html)
