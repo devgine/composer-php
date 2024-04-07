@@ -1,13 +1,11 @@
-ARG PHP_VERSION=8
+ARG PHP_VERSION=7.2
 ARG COMPOSER_VERSION=2
 
 FROM composer:${COMPOSER_VERSION} as composer
 
 FROM php:${PHP_VERSION}-fpm-alpine
 
-ARG PHP_VERSION=8
 ENV PHP_VERSION $PHP_VERSION
-ARG COMPOSER_VERSION=2
 ENV COMPOSER_VERSION $COMPOSER_VERSION
 
 ## XDEBUG
@@ -37,6 +35,8 @@ RUN composer global require --prefer-dist \
     symfony/phpunit-bridge \
     friendsofphp/php-cs-fixer \
     rector/rector \
+    vimeo/psalm \
+    squizlabs/php_codesniffer=* \
 	&& composer clear-cache
 
 WORKDIR /var/www/composer

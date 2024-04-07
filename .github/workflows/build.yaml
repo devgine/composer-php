@@ -19,11 +19,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
         composer: ['2']
         latest: [false]
         include:
-          - php: 8.2
+          - php: 8.3
             composer: 2
             latest: true
     runs-on: ubuntu-latest
@@ -72,7 +72,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
         composer: ['2']
     needs: packaging
     runs-on: ubuntu-latest
@@ -98,8 +98,14 @@ jobs:
       - name: PHPStan
         run: phpstan --version
 
+      - name: Psalm
+        run: psalm --version
+
       - name: PHP Code Standard Fixer
         run: php-cs-fixer --version
+
+      - name: PHP Code Sniffer
+        run: phpcs --version
 
       - name: PHP Mess Detector
         run: phpmd --version
