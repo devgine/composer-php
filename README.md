@@ -11,13 +11,13 @@ This repository is a docker image based on official php, composer and alpine doc
 This docker image contains a necessary tools you need to analyze and test your PHP project
 * xdebug
 * phpunit
+* rector
 * phpstan
 * psalm
 * phpcs
 * php-cs-fixer
 * phpmd
 * phpcpd (available from php 7.3 version)
-* rector
 
 Below is the list of docker images available by PHP versions:
 

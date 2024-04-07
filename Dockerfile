@@ -55,11 +55,11 @@ ARG BUILD_DATE
 ARG IMAGE_TAG=ghcr.io/devgine/composer-php:latest
 
 LABEL maintainer="yosribahri@gmail.com"
-LABEL org.opencontainers.image.title="Composer v$COMPOSER_VERSION PHP-fpm $PHP_VERSION docker image"
+LABEL org.opencontainers.image.title="Composer $COMPOSER_VERSION PHP-fpm $PHP_VERSION docker image"
 LABEL org.opencontainers.image.description="This is a docker image based on official alpine image, PHP-fpm \
-$PHP_VERSION and composer v$COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
+$PHP_VERSION and composer $COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
 different PHP version. It contains a necessary tools you need to analyze and test your PHP project \
-(xdebug, phpunit, phpstan, php-cs-fixer. phpmd and rector)."
+(xdebug, phpunit, rector, phpstan, psalm, phpcs, php-cs-fixer, phpmd and phpcpd)."
 LABEL org.opencontainers.image.source="https://github.com/devgine/composer-php"
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.created=$BUILD_DATE
@@ -71,9 +71,9 @@ LABEL org.label-schema.schema-version="1.0"
 LABEL org.label-schema.build-date=$BUILD_DATE
 LABEL org.label-schema.name="devgine/composer-php"
 LABEL org.label-schema.description="This is a docker image based on official alpine image, PHP-fpm \
-$PHP_VERSION and composer v$COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
+$PHP_VERSION and composer $COMPOSER_VERSION. This image will help you to build and test your PHP projects with \
 different PHP version. It contains a necessary tools you need to analyze and test your PHP project \
-(xdebug, phpunit, phpstan, php-cs-fixer. phpmd and rector)."
+(xdebug, phpunit, rector, phpstan, psalm, phpcs, php-cs-fixer, phpmd and phpcpd)."
 LABEL org.label-schema.url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-url="https://github.com/devgine/composer-php"
 LABEL org.label-schema.vcs-ref=$VCS_REF
