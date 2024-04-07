@@ -1,16 +1,29 @@
-# Composer PHP golden image
+# Composer PHP docker image
 [![Build](https://github.com/devgine/composer-php/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/build.yaml)
 [![License](https://img.shields.io/github/license/devgine/composer-php)](https://github.com/devgine/composer-php/blob/main/LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/devgine/composer-php)
 [![Packages retention policy](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml/badge.svg?branch=main)](https://github.com/devgine/composer-php/actions/workflows/packages-retention-policy.yaml)
+
+![cover.png](.readme/images/cover.png)
+
 ## About
 This repository is a docker image based on official php, composer and alpine docker images to help you to build and test your PHP projects with different PHP version.<br>
-This docker image contains a necessary tools you need to analyze and test your PHP project (xdebug, phpunit, phpstan, php-cs-fixer, phpmd, phpcpd and rector).<br>
+This docker image contains a necessary tools you need to analyze and test your PHP project
+* xdebug
+* phpunit
+* phpstan
+* psalm
+* phpcs
+* php-cs-fixer
+* phpmd
+* phpcpd (available from php 7.3 version)
+* rector
+
 Below is the list of docker images available by PHP versions:
 
 | PHP version | Docker image tags                               |
 |-------------|-------------------------------------------------|
-| PHP 8.2     | `ghcr.io/devgine/composer-php:latest`           |
+| PHP 8.3     | `ghcr.io/devgine/composer-php:latest`           |
 | PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine` |
 | PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine` |
 | PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine` |
@@ -18,24 +31,11 @@ Below is the list of docker images available by PHP versions:
 | PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine` |
 | PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine` |
 
-## Components
-All image tags are based on alpine OS.<br>
-Below is the list of tools with their preinstalled version depending on the PHP version.
-
-| Image tag                                   | PHP | Composer | PHP Unit | XDebug | Rector | PHPStan | PHP CS FIXER | PHP MD | PHP CPD |
-|---------------------------------------------|-----|----------|----------|--------|--------|---------|--------------|--------|---------|
-| [latest](doc/latest.md)                     | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.2-alpine](doc/v2-php8.2-alpine.md) | 8.2 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.1-alpine](doc/v2-php8.1-alpine.md) | 8.1 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php8.0-alpine](doc/v2-php8.0-alpine.md) | 8.0 | 2.*      | 9.5      | 3.2.1  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.4-alpine](doc/v2-php7.4-alpine.md) | 7.4 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.17         | 2.13   | 6.0     |
-| [v2-php7.3-alpine](doc/v2-php7.3-alpine.md) | 7.3 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | 6.0     |
-| [v2-php7.2-alpine](doc/v2-php7.2-alpine.md) | 7.2 | 2.*      | 8.5      | 3.1.6  | 0.16   | 1.10    | 3.4          | 2.13   | --      |
 
 ## Usage
 ### Install from the command line
 ```shell
-docker run -ti -v LOCAL_PROJETC_DIR:/var/www/composer ghcr.io/devgine/composer-php:latest sh
+docker run -ti -v LOCAL_PROJECT_DIR:/var/www/composer ghcr.io/devgine/composer-php:latest sh
 ```
 [All versions](https://github.com/devgine/composer-php/pkgs/container/composer-php/versions)
 ### Use as base image in Dockerfile
@@ -54,6 +54,7 @@ EXPOSE 8080
 ### Use components
 Inside the container, you can run any tool you need from any working directory.<br>
 Global vendor binaries are added to the PATH environment.
+
 #### Composer
 ```shell
 composer --help
@@ -69,6 +70,14 @@ rector --help
 #### PHPStan
 ```shell
 phpstan --help
+```
+#### Psalm
+```shell
+psalm --help
+```
+#### PHP Code sniffer
+```shell
+phpcs --help
 ```
 #### PHP Coding Standards Fixer
 ```shell
@@ -113,7 +122,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tag: ['v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
+        tag: ['v2-php8.3-alpine', 'v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
     container:
       image: ghcr.io/devgine/composer-php:${{ matrix.tag }}
     steps:
@@ -124,7 +133,7 @@ jobs:
 
 ### Gitlab CI
 ```yaml
-phpstan:
+tests:
   image: ghcr.io/devgine/composer-php:latest
   ...
   script:
@@ -133,10 +142,10 @@ phpstan:
 
 An example with matrix strategy
 ```yaml
-phpstan:
+tests:
   parallel:
     matrix:
-      TAG: ['v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
+      TAG: ['v2-php8.3-alpine', 'v2-php8.2-alpine', 'v2-php8.1-alpine', 'v2-php8.0-alpine', 'v2-php7.4-alpine']
   image: ghcr.io/devgine/composer-php:${TAG}
   ...
   script:
@@ -149,6 +158,8 @@ phpstan:
 * [PHP Unit](https://symfony.com/doc/current/components/phpunit_bridge.html)
 * [Rector](https://packagist.org/packages/rector/rector)
 * [PHPStan](https://phpstan.org/)
+* [Psalm](https://psalm.dev/docs/)
+* [PHP CS](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
 * [PHP Coding Standards Fixer](https://cs.symfony.com/)
 * [PHP Mess Detector](https://phpmd.org/)
 * [PHP Copy Past detector](https://github.com/sebastianbergmann/phpcpd)
