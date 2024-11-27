@@ -23,6 +23,7 @@ Below is the list of docker images available by PHP versions:
 
 | PHP version | Docker image tags                               |
 |-------------|-------------------------------------------------|
+| PHP 8.4     | Coming soon (Waiting for xdebug 3.4)            |
 | PHP 8.3     | `ghcr.io/devgine/composer-php:latest`           |
 | PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine` |
 | PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine` |
