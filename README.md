@@ -107,7 +107,7 @@ jobs:
       image: ghcr.io/devgine/composer-php:latest
     steps:
       - name: 'Run Tests'
-        run: simple-phpunit --coverage text
+        run: simple-phpunit --coverage-text
       ...
 ```
 
@@ -128,7 +128,7 @@ jobs:
       image: ghcr.io/devgine/composer-php:${{ matrix.tag }}
     steps:
       - name: 'Run Tests'
-        run: simple-phpunit --coverage text
+        run: simple-phpunit --coverage-text
       ...
 ```
 
@@ -138,7 +138,7 @@ tests:
   image: ghcr.io/devgine/composer-php:latest
   ...
   script:
-    - simple-phpunit --coverage text
+    - simple-phpunit --coverage-text
 ```
 
 An example with matrix strategy
@@ -150,7 +150,7 @@ tests:
   image: ghcr.io/devgine/composer-php:${TAG}
   ...
   script:
-    - simple-phpunit --coverage text
+    - simple-phpunit --coverage-text
 ```
 
 ## References
