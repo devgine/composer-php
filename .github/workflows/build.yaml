@@ -61,6 +61,7 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: |
+            PHP_CS_FIXER_IGNORE_ENV=${{ matrix.php > 8.3 }}
             VCS_REF=${{ github.sha }}
             BUILD_DATE=${{ env.build_date }}
             BUILD_VERSION=v${{ matrix.composer }}-php${{ matrix.php }}-alpine
