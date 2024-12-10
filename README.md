@@ -21,16 +21,16 @@ This docker image contains a necessary tools you need to analyze and test your P
 
 Below is the list of docker images available by PHP versions:
 
-| PHP version | Docker image tags                               |
-|-------------|-------------------------------------------------|
-| PHP 8.4     | `ghcr.io/devgine/composer-php:latest`           |
-| PHP 8.3     | `ghcr.io/devgine/composer-php:v2-php8.3-alpine` |
-| PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine` |
-| PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine` |
-| PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine` |
-| PHP 7.4     | `ghcr.io/devgine/composer-php:v2-php7.4-alpine` |
-| PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine` |
-| PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine` |
+| PHP version | Docker image tags                                                                        |
+|-------------|------------------------------------------------------------------------------------------|
+| PHP 8.4     | `ghcr.io/devgine/composer-php:latest`<br>`ghcr.io/devgine/composer-php:v2-php8.4-alpine` |
+| PHP 8.3     | `ghcr.io/devgine/composer-php:v2-php8.3-alpine`                                          |
+| PHP 8.2     | `ghcr.io/devgine/composer-php:v2-php8.2-alpine`                                          |
+| PHP 8.1     | `ghcr.io/devgine/composer-php:v2-php8.1-alpine`                                          |
+| PHP 8.0     | `ghcr.io/devgine/composer-php:v2-php8.0-alpine`                                          |
+| PHP 7.4     | `ghcr.io/devgine/composer-php:v2-php7.4-alpine`                                          |
+| PHP 7.3     | `ghcr.io/devgine/composer-php:v2-php7.3-alpine`                                          |
+| PHP 7.2     | `ghcr.io/devgine/composer-php:v2-php7.2-alpine`                                          |
 
 
 ## Usage
